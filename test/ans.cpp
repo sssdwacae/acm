@@ -1,97 +1,90 @@
-#include<iostream>
-#include<algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-#define int long long
+
+using pii = pair<int, int>;
+#define endl '\n'
+
+int t;
+double x, y, r, vx, vy, lx, ly, rx, ry;
+double x1, x2, Y1, y2, midx, midy, k;
+
 void solve()
 {
-    int ans=0;
-    int a[7];
-    for(int i=1;i<=5;i++)
-        cin>>a[i];
+    cin >> x >> y >> r >> vx >> vy >> lx >> ly >> rx >> ry;
 
-    int temp=0;
-    
-    temp=a[3]/2;
-    ans+=temp;
-    a[3]-=temp*2;
-
-    temp=min(a[4],a[2]);
-    ans+=temp;
-    a[4]-=temp;a[2]-=temp;
-
-    temp=min(a[5],a[1]);
-    ans+=temp;
-    a[5]-=temp;a[1]-=temp;
-    if(a[5]){
-        temp=min(a[5],a[2]);
-        ans+=temp;
-        a[5]-=temp;a[2]-=temp;
-
-        if(a[5]){
-            temp=min(a[5],a[3]);
-            ans+=temp;
-            a[5]-=temp;a[3]-=temp;
-
-            if(a[5]){
-                temp=min(a[5],a[4]);
-                ans+=temp;
-                a[5]-=temp;a[4]-=temp;
-
-                if(a[5]){
-                    temp=a[5]/2;
-                    ans+=temp;
-                    a[5]-=temp*2;
-                }
-            }
-        }
+    if (ry - ly < 2 * r || rx - lx < 2 * r)
+    {
+        cout << "No\n";
+        return;
     }
 
-    temp=min(a[1]/2,a[4]);
-    ans+=temp;
-    a[4]-=temp;a[1]-=temp*2;
+    if (vx == 0 && vy == 0)
+    {
+        x1 = x2 = x, Y1 = y2 = y;
+    }
+    else if (vx == 0)
+    {
+        x1 = x2 = x;
+        // Y1 = ly, y2 = ry;
+        if ((ly - y) * vy <= 0)
+            Y1 = y;
+        else
+            Y1 = ly;
+        if ((ry - y) * vy <= 0)
+            y2 = y;
+        else
+            y2 = ry;
+    }
+    else if (vy == 0)
+    {
+        Y1 = y2 = y;
+        // x1 = lx, x2 = rx;
+        if ((lx - x) * vx <= 0)
+            x1 = x;
+        else
+            x1 = lx;
+        if ((rx - x) * vx <= 0)
+            x2 = x;
+        else
+            x2 = rx;
+    }
+    else
+    {
+        if ((lx - x) * vx <= 0)
+            x1 = x;
+        else
+            x1 = lx;
+        if ((rx - x) * vx <= 0)
+            x2 = x;
+        else
+            x2 = rx;
 
-    if(a[4]){
-        a[2]+=a[1];a[1]=0;
-        temp=(a[2]/2,a[4]);
-        ans+=temp;
-        a[2]-=temp*2;a[4]-=temp;
-
-        if(a[4]){
-            a[3]+=a[2];a[2]=0;
-            temp=(a[3]/2,a[4]);
-            ans+=temp;
-            a[3]-=temp*2;a[4]-=temp;
-
-            if(a[4]){
-                a[4]+=a[3];a[3]=0;
-                temp=a[4]/3;
-                ans+=temp;
-                a[4]-=temp*3;
-            }
-        }
+        Y1 = (double)(x1 - x) * vy / vx + y;
+        y2 = (double)(x2 - x) * vy / vx + y;
     }
 
-    temp=min(a[3],min(a[2],a[1]));
-    ans+=temp;
-    a[3]-=temp;a[2]-=temp;a[1]-=temp;
+    // cout << x1 << ' ' << Y1 << ' ' << x2 << ' ' << y2 << '\n';
 
-    if(a[3]&&a[2]){
-        temp=min(a[2]/2,a[3]);
-        ans+=temp;
-        a[2]-=temp*2;a[3]-=temp;
-    }
-
-    ans+=(a[1]+2*a[2]+3*a[3])/6;
-    cout<<ans<<endl;
+    if (x1 > x2)
+        swap(x1, x2);
+    if (Y1 > y2)
+        swap(Y1, y2);
+    if (x1 + r <= rx && x2 - r >= lx && Y1 + r <= ry && y2 - r >= ly)
+        cout << "Yes\n";
+    else
+        cout << "No\n";
 }
 
-signed main()
+int main()
 {
     freopen("in.txt","r",stdin);
     freopen("ansout.txt","w",stdout);
-    int T;
-    cin>>T;
-    while(T--)
+    // ios_base::sync_with_stdio(0);
+    // cin.tie(0), cout.tie(0);
+    cin >> t;
+    while (t--){
+        cout<<t;
         solve();
+    }
     return 0;
 }

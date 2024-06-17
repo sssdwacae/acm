@@ -1,224 +1,84 @@
 #include<iostream>
 #include<algorithm>
-#define int long long
-#define endl '\n'
 using namespace std;
-
-void slove()
+#define int long long
+void solve()
 {
-    int a[10];
-    int sum=0;
-    for(int i=1;i<=5;i++){
-        cin>>a[i];
-        sum+=a[i]*i;
+    int x,y,r,vx,vy,x1,y1,x2,y2;
+    cin>>x>>y>>r>>vx>>vy>>x1>>y1>>x2>>y2;
+
+    //以x,y为原点
+    x1=x1-x;x2=x2-x;y1=y1-y;y2=y2-y;
+
+    //cout<<"first:"<<x1<<' '<<y1<<' '<<x2<<' '<<y2<<endl;
+
+    //点在矩形内
+    x1+=r;y1+=r;x2-=r;y2-=r;
+
+    //cout<<x1<<' '<<y1<<' '<<x2<<' '<<y2<<endl;
+
+    if(0<=x2&&0<=y2&&0>=x1&&0>=y1){
+        cout<<"Yes\n";
+        return;
     }
-    int ans=0;
 
-    int temp=min(a[1],a[5]);
-    ans+=temp;
-    a[1]-=temp;a[5]-=temp;
+    //cout<<x1<<' '<<y1<<' '<<x2<<' '<<y2<<endl;
 
-    if(a[5]==0){
-        temp=a[3]/2;
-        ans+=temp;
-        a[3]-=temp*2;
+    //裁剪矩形
+    if(vx>0&&x1<0)
+        x1=0;
+    else if(vx<0&&x2>0)
+        x2=0;
+    if(vy>0&&y1<0)
+        y1=0;
+    else if(vy<0&&y2>0)
+        y2=0;
 
-        temp=min(a[2],a[4]);
-        ans+=temp;
-        a[2]-=temp;a[4]-=temp;
-
-        if(a[2]==0){
-            temp=min(a[1]/2,a[4]);
-            ans+=temp;
-            a[1]-=temp*2;a[4]-=temp;
-
-            if(a[1]==0){
-                a[4]+=a[3];a[3]=0;
-                temp=a[4]/3;
-                ans+=temp;
-                a[4]-=temp*3;
-            }
-            else if(a[4]==0){
-                if(a[1]>=3&&a[3]){
-                    ans++;
-                    a[3]=0;a[1]-=3;
-                }
-                if(a[3]){
-                    a[1]++;
-                    a[3]--;
-                }
-                temp=a[1]/6;
-                ans+=temp;
-                a[1]-=temp*6;
-            }
-            if(a[1]>=2){
-                temp=min(a[1]/2,a[4]);
-                ans+=temp;
-                a[1]-=temp*2;a[4]-=temp;
-            }
-            if(a[1]==1){
-                a[4]+=1;a[1]--;
-            }
-            if(a[3]){
-                a[4]++;
-                a[3]--;
-            }
-            temp=a[4]/3;
-            ans+=temp;
-            a[4]-=temp*3;
-        }
-        else if(a[4]==0){
-            temp=min(min(a[1],a[2]),a[3]);
-            ans+=temp;
-            a[1]-=temp;a[2]-=temp;a[3]-=temp;
-            if(a[1]==0){
-                temp=a[3]/2;
-                ans+=temp;
-                a[3]-=temp*2;
-
-                if(a[3]){
-                    a[2]++;
-                    a[3]--;
-                }
-
-                temp=a[2]/3;
-                ans+=temp;
-                a[2]-=temp*3;
-
-
-            }
-            else if(a[2]==0){
-                if(a[1]>=3&&a[3]){
-                    ans++;
-                    a[3]=0;
-                    a[1]-=3;
-                }
-                temp=a[1]/6;
-                ans+=temp;
-                a[1]-=temp*6;
-            }
-            else if(a[3]==0){
-                temp=a[2]/3;
-                ans+=temp;
-                a[2]-=temp*3;
-                if(a[2]==2){
-                    if(a[1]>=2){
-                        ans++;
-                        a[1]-=2;
-                    }
-                }
-                else if(a[2]==1){
-                    if(a[1]>=4){
-                        ans++;
-                        a[1]-=4;
-                    }
-                }
-                ans+=a[1]/6;
-            }
-        }
-    }
-    else if(a[1]==0){
-        temp=a[3]/2;
-        ans+=temp;
-        a[3]-=temp*2;
-
-        temp=min(a[2],a[4]);
-        ans+=temp;
-        a[2]-=temp;a[4]-=temp;
-
-        temp=min(a[2],a[5]);
-        ans+=temp;
-        a[2]-=temp;a[5]-=temp;
-
-        if(a[2]==0){
-            temp=min(a[3],a[5]);
-            ans+=temp;
-            a[3]-=temp;a[5]-=temp;
-            if(a[3]==0){
-                temp=min(a[4],a[5]);
-                ans+=temp;
-                a[4]-=temp;a[5]-=temp;
-                if(a[4]==0){
-                    temp=a[5]/2;
-                    ans+=temp;
-                    a[5]-=temp*2;
-                    // ans+=a[5]/2;
-                }
-                else if(a[5]==0){
-                    temp=a[4]/3;
-                    ans+=temp;
-                    a[4]-=temp*3;
-                    // ans+=a[4]/3;
-                }
-            }
-            else if(a[5]==0){
-                temp=a[3]/2;
-                ans+=temp;
-                a[3]-=temp*2;
-                if(a[3]!=0){
-                    if(a[4]>=2){
-                        a[4]-=2;
-                        ans++;
-                    }
-                }
-                temp=a[4]/3;
-                ans+=temp;
-                a[4]-=temp*3;
-            }   
-        }
-        else if(a[5]==0){
-            temp=min(a[2],a[4]);
-            ans+=temp;
-            a[2]-=temp;a[4]-=temp;
-            if(a[2]==0){
-                temp=a[3]/2;
-                ans+=temp;
-                a[3]-=temp*2;
-                if(a[3]!=0){
-                    if(a[4]>=2){
-                        a[4]-=2;
-                        ans++;
-                        a[3]--;
-                    }
-                }
-                temp=a[4]/3;
-                ans+=temp;
-                a[4]-=temp*3;
-            }
-            else if(a[4]==0){
-                temp=a[3]/2;
-                ans+=temp;
-                a[3]-=temp*2;
-
-                if(a[3]){
-                    a[3]--;
-                    a[2]++;
-                } 
-                temp=a[2]/3;
-                ans+=temp;
-                a[2]-=temp*3;
-            }
-        }
-    }
     
-    //ans=min(ans,sum/6);
-    cout<<ans<<endl;
+    
+    if(x1>x2||y1>y2){
+        cout<<"No\n";
+        return;
+    }
+
+
+
+    //四条坐标轴
+    if(vx==0){
+        if(( (vy>0&&y2>0)||(vy<0&&y1<0) )&&x1<=0&&x2>=0)
+            cout<<"Yes\n";
+        else
+            cout<<"No\n";
+        return;
+    }
+    if(vy==0){
+        if(( (vx>0&&x2>0)||(vx<0&&x1<0) )&&y1<=0&&y2>=0)
+            cout<<"Yes\n";
+        else
+            cout<<"No\n";
+        return;
+    }
+    if(   (vx>0&&vy>0&&x2>0&&y2>0&&((y1*vx<=vy*x1&&vy*x1<=y2*vx)||(x1*vy<=vx*y1&&vx*y1<=x2*vy)))
+        ||(vx>0&&vy<0&&x2>0&&y1<0&&((vx*y1<=vy*x1&&vy*x1<=vx*y2)||(x2*vy<=vx*y2&&vx*y2<=x1*vy)))
+        ||(vx<0&&vy<0&&x1<0&&y1<0&&((x2*vy<=vy*x2&&vy*x2<=x1*vx)||(y2*vy<=vx*y2&&vx*y2<=y1*vy)))
+        ||(vx<0&&vy>0&&x1<0&&y2>0&&((vx*y1<=vy*x2&&vy*x2<=vx*y2)||(x1*vy<=vx*y1&&vx*y1<=x2*vy)))
+        ){
+        cout<<"Yes\n";
+        return;
+    }
+    cout<<"No\n";
     return;
 }
 
 signed main()
 {
-    //freopen("in.txt","r",stdin);
-    //freopen("solout.txt","w",stdout);
+    freopen("in.txt","r",stdin);
+    freopen("ansout.txt","w",stdout);
     int T;
     cin>>T;
-    while(T--)
-        slove();
+    while(T--){
+        cout<<T;
+        solve();
+    }
     return 0;
 }
-/*
-
-1 2 3 4 5
-0 2 1 0 0
-
-*/
