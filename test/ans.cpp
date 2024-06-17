@@ -88,7 +88,7 @@ void solve()
 signed main()
 {
     freopen("in.txt","r",stdin);
-    freopen("out.txt","w",stdout);
+    freopen("ansout.txt","w",stdout);
     int T;
     cin>>T;
     while(T--)

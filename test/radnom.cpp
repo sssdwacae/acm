@@ -12,12 +12,12 @@ int main()
 {
     freopen("in.txt","w",stdout);
     srand((unsigned)time(0));
-    int T=random(1e4);
+    int T=random(1e2);
     cout<<T<<endl;
     for(int i=1;i<=T;i++){
         int a[5];
         for(int j=0;j<5;j++)
-            a[j]=random(1e9);
+            a[j]=random(7);
         for(int j=0;j<5;j++)
             cout<<a[j]<<' ';
         cout<<endl;
