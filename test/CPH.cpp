@@ -19,11 +19,7 @@ void solve()
         return;
     }
 
-    if (vx == 0 && vy == 0)
-    {
-        x1 = x2 = x, Y1 = y2 = y;
-    }
-    else if (vx == 0)
+    if (vx == 0)
     {
         x1 = x2 = x;
         // Y1 = ly, y2 = ry;
@@ -78,13 +74,10 @@ void solve()
 
 int main()
 {
-    // freopen("in.txt","r",stdin);
-    // freopen("ansout.txt","w",stdout);
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
     cin >> t;
     while (t--){
-        //cout<<t;
         solve();
     }
     return 0;

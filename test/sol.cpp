@@ -58,10 +58,11 @@ void solve()
             cout<<"No\n";
         return;
     }
+    //cout<<'?';
     if(   (vx>0&&vy>0&&x2>0&&y2>0&&((y1*vx<=vy*x1&&vy*x1<=y2*vx)||(x1*vy<=vx*y1&&vx*y1<=x2*vy)))
         ||(vx>0&&vy<0&&x2>0&&y1<0&&((vx*y1<=vy*x1&&vy*x1<=vx*y2)||(x2*vy<=vx*y2&&vx*y2<=x1*vy)))
-        ||(vx<0&&vy<0&&x1<0&&y1<0&&((x2*vy<=vy*x2&&vy*x2<=x1*vx)||(y2*vy<=vx*y2&&vx*y2<=y1*vy)))
-        ||(vx<0&&vy>0&&x1<0&&y2>0&&((vx*y1<=vy*x2&&vy*x2<=vx*y2)||(x1*vy<=vx*y1&&vx*y1<=x2*vy)))
+        ||(vx<0&&vy<0&&x1<0&&y1<0&&((y2*vx<=vy*x2&&vy*x2<=y1*vx)||(x2*vy<=vx*y2&&vx*y2<=x1*vy)))
+        ||(vx<0&&vy>0&&x1<0&&y2>0&&((vx*y2<=vy*x2&&vy*x2<=vx*y1)||(x1*vy<=vx*y1&&vx*y1<=x2*vy)))
         ){
         cout<<"Yes\n";
         return;
