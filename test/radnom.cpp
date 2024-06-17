@@ -14,7 +14,7 @@ int main()
 {
     freopen("in.txt","w",stdout);
     srand((unsigned)time(0));
-    int T=random(mn);
+    int T=random(1e4);
     cout<<T<<endl;
     for(int i=1;i<=T;i++){
         int x,y,vx,vy,r;

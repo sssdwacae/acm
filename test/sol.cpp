@@ -73,7 +73,7 @@ void solve()
 signed main()
 {
     freopen("in.txt","r",stdin);
-    freopen("ansout.txt","w",stdout);
+    freopen("solout.txt","w",stdout);
     int T;
     cin>>T;
     while(T--){
