@@ -1,7 +1,7 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
-
+#define int long long
 void solve()
 {
     int x,y,r,vx,vy,x1,y1,x2,y2;
@@ -62,7 +62,7 @@ void solve()
     return;
 }
 
-int main()
+signed main()
 {
     int T;
     cin>>T;
