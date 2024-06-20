@@ -10,7 +10,7 @@ const int N=1e5+5;
 
 void solve()
 {
-
+    cout<<"hello";
     return;
 }
 
