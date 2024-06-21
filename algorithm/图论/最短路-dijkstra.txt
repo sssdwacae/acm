@@ -1,0 +1,66 @@
+#include<cstdio>
+#include<queue>
+#include<vector>
+#include<iostream>
+#define inf 0x3f3f3f
+const int maxn=1005;
+using namespace std;
+
+typedef pair<int,int> P; //前面放到 dis[i],后面放i 
+
+struct node{
+	int v,w;
+}E;
+vector<node> edge[maxn];
+int dis[maxn];
+
+int main(){
+	int n,m;
+	int u;
+	while(scanf("%d%d",&n,&m),n){
+		//初始化
+		for(int i=1;i<=n;i++){
+			dis[i]=inf;
+		} 
+		//存图 
+		for(int i=1;i<=m;i++){
+			scanf("%d%d%d",&u,&E.v,&E.w);
+			edge[u].push_back(E);
+		}
+		
+		priority_queue <P,vector<P>,greater<P> > que;
+		while(!que.empty()) que.pop();
+		dis[1]=0;
+		que.push(P(dis[1],1));
+		while(!que.empty()){
+			P now=que.top(); que.pop();
+			
+			int nowu=now.second;
+			for(int i=0;i<edge[nowu].size();i++){
+				E=edge[nowu][i]; 
+				if(dis[E.v]>dis[nowu]+E.w){
+					dis[E.v]=dis[nowu]+E.w;
+					que.push(P(dis[E.v],E.v));
+				}
+			}
+		}
+		for(int i=1;i<=n;i++)
+	    	printf("%d ",dis[i]);
+	    printf("\n");
+	}
+	return 0;
+} 
+
+/*
+6 9
+1 2 1
+1 3 12
+2 3 9
+2 4 3
+3 5 5
+4 3 4
+4 5 13
+4 6 15
+5 6 4
+*/
+
