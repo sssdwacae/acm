@@ -1,0 +1,1 @@
+{"name":"Local: P1152","url":"e:\\acmer\\luogu\\P1152.cpp","tests":[{"id":1718983987531,"input":"4 1 4 2 3","output":"Jolly"},{"id":1718983992221,"input":"5 1 4 2 -1 6","output":"Not jolly"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\luogu\\P1152.cpp","group":"local","local":true}
