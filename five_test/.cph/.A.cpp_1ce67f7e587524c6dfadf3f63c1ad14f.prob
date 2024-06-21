@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"e:\\acmer\\five_test\\A.cpp","tests":[{"id":1718968885392,"input":"15 8\n4 3 5 7 6","output":"15"},{"id":1718969394951,"input":"15 8\n3 7 7 9","output":"impossible"},{"id":1718969439014,"input":"15 8\n4 3 5 8 6","output":"14"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\five_test\\A.cpp","group":"local","local":true}
