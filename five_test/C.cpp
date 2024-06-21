@@ -1,11 +1,4 @@
-// #include<bits/stdc++.h>
-#include <cstdio>
-#include <algorithm>
-#include <iostream>
-#include <vector>
-#include <map>
-#include <string>
-#include <cstring>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define endl '\n'
@@ -34,9 +27,9 @@ void dfs(int pos, int sum)
         ans = max(sum, ans);
         return;
     }
-    //不选
-    
-    if (check[v[pos].first]==0)//可选
+    // 不选
+
+    if (check[v[pos].first] == 0) // 可选
     {
         // cout<<check[2]<<' '<<check[3]<<' '<<check[4]<<endl;
         check[v[pos].first + 1] = 1;
@@ -46,7 +39,7 @@ void dfs(int pos, int sum)
         check[v[pos].first - 1] = 0;
     }
     dfs(pos + 1, sum);
-    
+
     return;
 }
 void solve()
@@ -75,11 +68,12 @@ void solve()
 
 signed main()
 {
-    // ios::sync_with_stdio(0);
-    // cin.tie(0);cout.tie(0);
-    //    freopen("in.txt","r",stdin);
-    //    freopen("out.txt","w",stdout);
-    //     cout<<"2022112383\n";
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+    cout << "2022112383\n";
     int T;
     // cin>>T;
     T = 1;
