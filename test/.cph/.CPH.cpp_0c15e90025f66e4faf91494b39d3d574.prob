@@ -1,1 +1,1 @@
-{"name":"Local: CPH","url":"e:\\acmer\\test\\CPH.cpp","tests":[{"id":1718638290856,"input":"","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\test\\CPH.cpp","group":"local","local":true}
+{"name":"Local: CPH","url":"e:\\acmer\\test\\CPH.cpp","tests":[{"id":1718638290856,"input":"5\n1 2 3 4 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\test\\CPH.cpp","group":"local","local":true}
