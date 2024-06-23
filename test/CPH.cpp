@@ -1,72 +1,33 @@
 #include<bits/stdc++.h>
 using namespace std;
-string fun(string x){
-	string cnt;
-	int ans=0;
-	int c=0;
-	for(int i=x.length()-1;i>=0;i--){
-		if(x[i]>='0'&&x[i]<='9'){
-			ans+=(x[i]-'0')*pow(16,c);
-		}
-		if(x[i]>='A'&&x[i]<='F'){
-			ans+=(x[i]-'A'+10)*pow(16,c);
-		}
-		c++;
-	}
-	string h;
-	while(ans!=0){
-		h.insert(h.begin(),(ans%2)+'0');
-		ans/=2;
-	}
-	reverse(h.begin(),h.end());
-	if(h.length()!=12){
-		while(h.length()!=12){
-			h.insert(h.begin(),'0');
-		}
-	}
-	return h;
-}
-int sf(string y){
-	int c=0;
-	string k;
-	int cnt=0;
-	for(int i=y.length()-1;i>=0;i--){
-		if(i%3==0){
-			for(int j=k.length()-1;j>=0;j--){
-				c+=(k[i]-'0')*pow(2,cnt);
-				cnt++;
-			}
-		}
-		k+=y[i];
-	}
-	return c;
+string s[25];
+map<string,int> mp;
+int cmp(pair<string,int> a,pair<string,int> b){
+	return a.second>b.second;
 }
 int main(){
+	// ios::sync_with_stdio(0);
 	int n;
 	cin>>n;
-	while(n--){
-		string s;
-		cin>>s;
-		if(s.length()%3==1){
-			s.insert(s.begin(),'0');
-			s.insert(s.begin(),'0');
-		}
-		else if(s.length()%3==2){
-			s.insert(s.begin(),'0');
-		}
-		string ans;
-		int sum=0;
-		for(int i=sum;i<s.length();i++){
-			if(i%3==2){
-				ans=fun(ans);
-				cout<<sf(ans);
-				sum=i+1;
+	for(int i=1;i<=n;i++){
+		cin>>s[i];
+	}
+	string ans;
+	for(int i=1;i<=n;i++){
+		for(int j=0;j<32;j++){
+			ans+=s[i][j];
+			if(j%2==1){
+				mp[ans]++;
+            cout<<ans<<endl;
 				ans.clear();
 			}
-			else{
-				ans+=s[i];
-			}
+         // cout<<ans<<endl;
 		}
+	}
+	vector<pair<string,int>> v(mp.begin(),mp.end());
+	sort(v.begin(),v.end(),cmp);
+	for(int i=0;i<16;i++){
+		cout<<v[i].first;
 	}
 	return 0;
 }
