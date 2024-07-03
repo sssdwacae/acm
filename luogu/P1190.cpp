@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define endl '\n'
+
+const int N=1e5+5;
+#define ll long long
+#define mp make_pair
+
+int a[N];
+int b[N];
+
+void solve()
+{
+    int n,m;
+    cin>>n>>m;
+    for(int i=1;i<=n;i++)
+        cin>>a[i];
+    for(int i=1;i<=m;i++)
+        b[i]=a[i];
+    for(int i=m+1;i<=n;i++){
+        sort(b+1,b+m+1);
+        b[1]+=a[i];
+    }
+    sort(b+1,b+m+1);
+    cout<<b[m];
+    return;
+}
+
+signed main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);cout.tie(0);
+    int T;
+    // cin>>T;
+    T=1;
+    while(T--)
+        solve();     
+    return 0;
+}
