@@ -1,34 +1,36 @@
-/*
+#include<bits/stdc++.h>
+using namespace std;
 
-差分  原数组  前缀和
+#define endl '\n'
 
-前缀和，差分，递归，函数
+const int N=1e5+5;
+#define ll long long
+#define mp make_pair
 
 
-    前缀和
-        对于q次查询a[l]->a[r]的和
-        b[i]=b[i-1]+a[i]
-    
-    
-    差分
-        给定一个原数组a不全为0
-        对于q次操作a[l]到a[r]全部加k
-        输出这个数组改变之后的结果
+int fun(int x){
+    static int a=3;
+    a+=x;
+    return a;
+}
 
-        原数组的a[i]+差分数组求前缀和的c[i]
-        b[l]+=k;b[r+1]-=k;
+void solve()
+{
+    int k=2,m=1,n;
+    n=fun(k);
+    n=fun(m);
+    cout<<n;
+    return;
+}
 
-    void/int fun(int a,vector<int> b...){
-        if(递归出口){
-            return ;
-        }
-
-        if(){
-            fun(A,B...)
-        }
-        if(){
-            fun(A,B...)
-        }
-        return ;
-    }
-*/
+signed main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);cout.tie(0);
+    int T;
+    // cin>>T;
+    T=1;
+    while(T--)
+        solve();     
+    return 0;
+}
