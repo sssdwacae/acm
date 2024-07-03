@@ -7,6 +7,7 @@ const int N=1e5+5;
 #define ll long long
 #define mp make_pair
 
+// list<int> a;
 
 void solve()
 {
