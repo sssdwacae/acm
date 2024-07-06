@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"e:\\acmer\\moditest\\A.cpp","tests":[{"id":1720246309990,"input":"3 2\n1 7 0\n5 8 11\n10 4 2\n","output":"4"},{"id":1720246318160,"input":"3 3\n1 2 3\n4 5 6\n7 8 9\n","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\moditest\\A.cpp","group":"local","local":true}
