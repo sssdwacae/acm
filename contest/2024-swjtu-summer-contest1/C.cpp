@@ -1,7 +1,9 @@
 #include<bits/stdc++.h>
+#include<iostream>
+
 using namespace std;
 
-#define endl '\n'
+// #define endl '\n'
 
 const int N=1e5+5;
 #define ll long long
@@ -10,15 +12,18 @@ const int N=1e5+5;
 
 void solve()
 {
-    int a,b;
+    int a,b=0;
     cout<<"? 1 2"<<endl;
-    flush(stdout);
+    fflush(stdout);
     cin>>a;
-    cout<<"? 2 1"<<endl;
-    flush(stdout);
-    cin>>b;
+    b=a;
+    while(b==a){
+        cout<<"? 1 2"<<endl;
+        fflush(stdout);
+        cin>>b;
+    }
     cout<<'!'<<a+b<<endl;
-    flush(stdout);
+    fflush(stdout);
     return;
 }
 
