@@ -1,73 +1,74 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
+#define int long long
 #define endl '\n'
+using pii = pair<int, int>;
 
-const int N=1e5+5;
-#define ll long long
-#define mp make_pair
+int n, m, t;
+vector<int> ll, rr;
+vector<string> l, r;
 
+void solve() {
+  cin >> n;
+  ll = vector<int>(n), rr = vector<int>(n);
+  l = vector<string>(n), r = vector<string>(n);
+  for (int i = 0; i < n; ++i)
+    cin >> ll[i] >> rr[i];
 
-void solve()
-{
-    int n;
-    cin>>n;
-    vector<int> l(n+1),r(n+1);
-    int mx=0;
-    for(int i=1;i<=n;i++){
-        cin>>l[i]>>r[i];
-        mx=max(l[i],mx);
-        mx=max(r[i],mx);
+  for (int i = 0; i < n; ++i)
+    for (int j = 29; j >= 0; --j) {
+      l[i] += (1 << j) & ll[i] ? '1' : '0';
+      r[i] += (1 << j) & rr[i] ? '1' : '0';
     }
-    int nn=-1;
-    while(mx){
-        mx/=2;
-        nn++;
-    }
-    int ans=0;
-    for(int i=nn;i>=0;i--){//判断位数
-        bool flag=true;//假设目前位数能取到1
-        for(int j=1;j<=n;j++){
-            if(0==((r[j]>>i)&1)){//取不到1
-                flag=false;
-                break;
+
+  // for (int i = 0; i < n; ++i) {
+  //   cerr << l[i] << endl;
+  //   cerr << r[i] << endl;
+  // }
+
+  int flag, term = 1 << 29;
+  int res = 0;
+
+  for (int i = 0; i < 30; ++i) {
+    flag = 1;
+
+    for (int k = 0; k < n; ++k)
+      if (r[k][i] == '0') {
+        flag = 0;
+        break;
+ }
+
+    if (flag) {
+      res += term;
+      cerr << "add: " << term << endl;
+    } else {
+      for (int x = 0; x < n; ++x) {
+        if (r[x][i] == '1') {
+          for (int k = i; k < 30; ++k) {
+            if (r[x][k] == '1' && l[x][k] == '0') {
+              while (k < 30)
+                r[x][k++] = '1';
             }
+          }
         }
-        /*
-            r     xxxx 1  xxxxx
-            l     xxxx 1  xxxxx
-                  xxxx 0  xxxxx
-        */
-        if(flag){
-            ans+=(1<<i);
-        }
-        else{
-            for(int j=1;j<=n;j++){
-                if(1==((r[j]>>i)&1)){
-                    r[j]=(1<<i)-1;
-                    if((l[j]>>i)&1){
-                        l[j]=l[j]%(1<<i);
-                    }
-                    else{
-                        l[j]=(1<<i)-1;
-                    }
-                }
-            }
-        }
+      }
     }
-    cout<<ans<<endl;
-    return;
+
+    term >>= 1;
+  }
+
+  cout << res << endl;
 }
 
-signed main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0);cout.tie(0);
-	freopen("in.txt","r",stdin);
+signed main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0), cout.tie(0);
+    freopen("in.txt","r",stdin);
     freopen("solout.txt","w",stdout);
-    int T;
-    cin>>T;
-    while(T--)
-        solve();     
-    return 0;
+  cin >> t;
+  while (t--)
+    solve();
 }
+
+	

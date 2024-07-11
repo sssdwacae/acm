@@ -17,13 +17,32 @@ void solve()
     fflush(stdout);
     cin>>a;
     b=a;
-    while(b==a){
+    int cnt=1;
+    while(b==a&&cnt<=25){
         cout<<"? 1 2"<<endl;
         fflush(stdout);
         cin>>b;
+        cnt++;
     }
-    cout<<'!'<<a+b<<endl;
-    fflush(stdout);
+    if(a!=b){
+        cout<<'!'<<a+b<<endl;
+        fflush(stdout);
+    }
+    else{
+        cout<<"? 1 3"<<endl;
+        fflush(stdout);
+        cin>>a;
+        b=a;
+        cnt=1;
+        while(b==a&&cnt<=25){
+            cout<<"? 1 3"<<endl;
+            fflush(stdout);
+            cin>>b;
+            cnt++;
+        }
+        cout<<a+b<<endl;
+        fflush(stdout);
+    }
     return;
 }
 

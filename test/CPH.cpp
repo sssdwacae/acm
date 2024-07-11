@@ -1,20 +1,23 @@
-#include <iostream>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
-
-const int N = 110;
-int f[N][N];
-int v[N], w[N], s[N];
-int n, m;
-
-int main()
-{
-    cin >> n >> m;
-    for (int i = 1; i <= n; i++) cin >> v[i] >> w[i] >> s[i];
-    for (int i = 1; i <= n; i++)
-        for (int j = 0; j <= m; j++)
-            for (int k = 0; k <= s[i] && k * v[i] <= j; k++)
-                f[i][j] = max(f[i][j], f[i - 1][j - k * v[i]] + k * w[i]);
-    cout << f[n][m] << endl;
-    return 0;
+int a[1005];
+int f[1005];
+int main(){
+	int n;
+	cin>>n;
+	for(int i=1;i<=n;i++){
+		cin>>a[i];
+	}
+	f[1]=a[1];
+	for(int i=2;i<=n;i++){
+		f[i]=f[i-1]+a[i];
+	}
+	int ans=-0x3f3f3f3f;
+	for(int i=1;i<=n;i++){
+		for(int j=i;j<=n;j++){
+			ans=max(f[j]-f[i-1],ans);
+		}
+	}
+	cout<<ans;
+	return 0;
 }

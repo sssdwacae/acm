@@ -38,8 +38,8 @@ void solve() {
 }
 
 int main() {
-    freopen("in.txt","r",stdin);
-    freopen("ansout.txt","w",stdout);
+    // freopen("in.txt","r",stdin);
+    // freopen("ansout.txt","w",stdout);
     int tcase; scanf("%d", &tcase);
     while (tcase--) solve();
     return 0;

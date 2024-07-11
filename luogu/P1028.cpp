@@ -32,6 +32,8 @@ void solve()
         f[i]++; 
     }
     cout<<f[n];
+    // fun(n);
+    // cout<<ans;
     return;
 }
 
