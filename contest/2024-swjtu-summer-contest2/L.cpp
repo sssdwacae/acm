@@ -48,21 +48,17 @@ void solve()
     //     cout<<v[i]<<' ';cout<<endl;
     // for(int i=1;i<=n-1;i++)
     //     cout<<w[i]<<' ';cout<<endl;
-    // vector<int> ans(T);
-    
+    vector<int> dp(T+1);
+
     for(int i=1;i<=n-1;i++)
-        for(int j=0;j<=T;j++)
-            for(int k=0;k<=j/v[i];k++){
-                if(j<k*v[i])
-					dp[i][j]=max(dp[i-1][j],dp[i][j]);
-				else
-					dp[i][j]=max(dp[i-1][j],dp[i-1][j-k*v[i]]+k*w[i]);
-        }
-    for(int j=1;j<=T;j++){
-        dp[n-1][j]=max(dp[n-1][j],dp[n-1][j-1]);
-        cout<<dp[n-1][j]<<' ';
-    }
-    // cout<<dp[n-1][T];
+        for(int j=v[i];j<=T;j++){
+            if(j>=v[i])
+                dp[j]=max(dp[j],dp[j-v[i]]+w[i]);
+            else
+                dp[j]=dp[j];
+        } 
+    for(int i=1;i<=T;i++)
+        cout<<dp[i]<<' ';   
     return;
 }
 

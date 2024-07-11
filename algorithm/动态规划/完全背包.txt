@@ -1,0 +1,10 @@
+有n个物体，每个物品的体积是v，价值是w，
+每个物品可以使用无数次，计算在V的体积下的最大价值    
+//一维优化
+    for(int i=1;i<=n;i++)
+        for(int j=v[i];j<=V;j++){
+            if(j>=v[i])
+                dp[j]=max(dp[j],dp[j-v[i]]+w[i]);
+            else
+                dp[j]=dp[j];
+        } 
