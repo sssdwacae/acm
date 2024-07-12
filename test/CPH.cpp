@@ -1,23 +1,49 @@
 #include<bits/stdc++.h>
 using namespace std;
-int a[1005];
-int f[1005];
+vector<int> v;
 int main(){
 	int n;
 	cin>>n;
-	for(int i=1;i<=n;i++){
-		cin>>a[i];
-	}
-	f[1]=a[1];
-	for(int i=2;i<=n;i++){
-		f[i]=f[i-1]+a[i];
-	}
-	int ans=-0x3f3f3f3f;
-	for(int i=1;i<=n;i++){
-		for(int j=i;j<=n;j++){
-			ans=max(f[j]-f[i-1],ans);
+	while(n--){
+		int t;
+		cin>>t;
+		for(int i=1;i<=t;i++){
+			v.push_back(i);
 		}
+		bool flag=1;
+		while(v.size()>3){
+			vector<int> temp;
+			flag=!flag;
+			if(flag==0){
+				for(int i=0;i<v.size();i++){
+					if(i%2==1){
+						
+					}
+					else{
+						temp.push_back(v[i]);
+					}
+				}
+			}
+			else{
+				for(int i=0;i<v.size();i++){
+					if(i%3==2){
+						
+					}
+					else{
+						temp.push_back(v[i]);
+					}
+				}
+			}
+			v.clear();
+			for(int i=0;i<temp.size();i++){
+				v.push_back(temp[i]);
+			}
+			temp.clear();
+		}
+		for(int i=0;i<v.size();i++){
+			cout<<v[i]<<' ';
+		}
+		cout<<'\n';
 	}
-	cout<<ans;
 	return 0;
 }
