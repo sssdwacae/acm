@@ -12,18 +12,28 @@ int random(int n)
 
 int main()
 {
+    
     freopen("in.txt","w",stdout);
     srand((unsigned)time(0));
-    int T=random(1e1)+1;
-    cout<<T<<endl;
+    int TT=random(1e2)+1;
+    int T=random(1e1)+2;
+    cout<<T<<' '<<TT<<endl;
     for(int i=1;i<=T;i++){
-        int n=random(5)+1;
-        cout<<n<<endl;
-        for(int i=1;i<=n;i++){
-            int l=random(1e2)+1;
-            int r=random(1e2)+l;
-            cout<<l<<' '<<r<<endl;
+        int x1,x2,y1,y2;
+        int f=random(1e2)%2;
+        if(f){
+            x1=random(1e2)+1;
+            y1=random(1e2)+1;
+            y2=random(1e2)+1;
+            x2=x1;
         }
+        else{
+            x1=random(1e2)+1;
+            x2=random(1e2)+1;
+            y1=random(1e2)+1;
+            y2=y1;
+        }
+        cout<<x1<<' '<<y1<<' '<<x2<<' '<<y2<<endl;
     }
     return 0;
 }

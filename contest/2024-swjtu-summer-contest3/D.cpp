@@ -75,53 +75,53 @@ void solve()
     
     int T = 0;
 
-    vector<Line> temp;
-    for(int i=0;i<X.size();i++){
-        int s=X[i].x1,e=X[i].x2;
-        int j;
-        for(j=i+1;j<X.size();j++){
-            // cout<<e<<' '<<X[j].y1<<endl;
-            if((e>=X[j].x1)&&X[i].y1==X[j].y1){
-                e=max(e,X[j].x2);
-            }
-            else{
-                break;
-            }
-        }
-        if(e==X[i].x2){
-            temp.push_back(X[i]);
-        }
-        else{
-            temp.push_back(Line(s,X[i].y1,e,X[i].y2));
-            i=j;
-        }
-    }   
-    // cout<<temp.size()<<endl;
-    X=temp;
-    temp.clear();
+    // vector<Line> temp;
+    // for(int i=0;i<X.size();i++){
+    //     int s=X[i].x1,e=X[i].x2;
+    //     int j;
+    //     for(j=i+1;j<X.size();j++){
+    //         // cout<<e<<' '<<X[j].y1<<endl;
+    //         if((e>=X[j].x1)&&X[i].y1==X[j].y1){
+    //             e=max(e,X[j].x2);
+    //         }
+    //         else{
+    //             break;
+    //         }
+    //     }
+    //     if(e==X[i].x2){
+    //         temp.push_back(X[i]);
+    //     }
+    //     else{
+    //         temp.push_back(Line(s,X[i].y1,e,X[i].y2));
+    //         i=j;
+    //     }
+    // }   
+    // // cout<<temp.size()<<endl;
+    // X=temp;
+    // temp.clear();
 
-    for(int i=0;i<Y.size();i++){
-        int s=Y[i].y1,e=Y[i].y2;
-        int j;
-        for(j=i+1;j<Y.size();j++){
-            // cout<<e<<' '<<X[j].y1<<endl;
-            if(e>=Y[j].y1&&Y[i].x1==Y[j].x1){
-                e=max(e,Y[j].y2);
-            }
-            else{
-                break;
-            }
-        }
-        if(e==Y[i].y2){
-            temp.push_back(Y[i]);
-        }
-        else{
-            temp.push_back(Line(Y[i].x1,s,Y[i].x2,e));
-            i=j;
-        }
-    }   
-    // cout<<temp.size()<<endl;
-    Y=temp;
+    // for(int i=0;i<Y.size();i++){
+    //     int s=Y[i].y1,e=Y[i].y2;
+    //     int j;
+    //     for(j=i+1;j<Y.size();j++){
+    //         // cout<<e<<' '<<X[j].y1<<endl;
+    //         if(e>=Y[j].y1&&Y[i].x1==Y[j].x1){
+    //             e=max(e,Y[j].y2);
+    //         }
+    //         else{
+    //             break;
+    //         }
+    //     }
+    //     if(e==Y[i].y2){
+    //         temp.push_back(Y[i]);
+    //     }
+    //     else{
+    //         temp.push_back(Line(Y[i].x1,s,Y[i].x2,e));
+    //         i=j;
+    //     }
+    // }   
+    // // cout<<temp.size()<<endl;
+    // Y=temp;
 
 
 
@@ -148,6 +148,7 @@ void solve()
     }
     while (t)
     {
+        cout<<t<<' '<<nx<<' '<<ny<<endl;
         int nextx = nx, nexty = ny;
         bool flag = false;
         switch (d)
@@ -317,8 +318,6 @@ void solve()
 
 signed main()
 {
-      freopen("in.txt","r",stdin);
-    freopen("solout.txt","w",stdout);
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
