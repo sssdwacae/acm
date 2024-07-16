@@ -1,0 +1,1 @@
+{"name":"Local: B","url":"e:\\acmer\\contest\\2024-swjut-summer-contest4\\B.cpp","tests":[{"id":1720933732343,"input":"3\n3\n1 2 1\n2\n2 4\n2\n3 4\n","output":"Kobayashi\nTohru\nDraw\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\contest\\2024-swjut-summer-contest4\\B.cpp","group":"local","local":true}

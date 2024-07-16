@@ -1,0 +1,1 @@
+{"name":"Local: D","url":"e:\\acmer\\contest\\2024-swjut-summer-contest4\\D.cpp","tests":[{"id":1720939034195,"input":"2\n10 3 3 2\n1 3\n5 8\n10 10\n1 8\n10 10\n5 3 1 1\n1 2\n4 5\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\contest\\2024-swjut-summer-contest4\\D.cpp","group":"local","local":true}
