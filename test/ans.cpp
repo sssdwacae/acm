@@ -1,219 +1,83 @@
-#include<iostream>
-#include<cstdio>
-#include<vector>
-#include<queue>
-#include<stack>
-#include<cmath>
-#include<map>
-#include<set>
-#include<cstring>
-#include<string>
-#include<algorithm>
-#include<iomanip>
-#define fi first
-#define se second
-//#include<stdlib.h>
-//#include <time.h>
-//srand((unsigned)time(NULL));
+#include <bits/stdc++.h>
+#define PI atan(1.0)*4
+#define rp(i,s,t) for (register int i = (s); i <= (t); i++)
+#define RP(i,t,s) for (register int i = (t); i >= (s); i--)
+#define sc(x) scanf("%d",&x)
+#define scl(x) scanf("%lld",&x)
+#define ll long long
+#define ull unsigned long long
+#define mst(a,b) memset(a,b,sizeof(a))
+#define lson rt<<1,l,m
+#define rson rt<<1|1,m+1,r
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define pil pair<int,ll>
+#define m_p make_pair
+#define p_b push_back
+#define ins insert
+#define era erase
+#define INF 0x3f3f3f3f
+#define inf 0x3f3f3f3f3f3f3f3f
+#define dg if(debug)
+#define pY puts("YES")
+#define pN puts("NO")
+#define outval(a) cout << "Debuging...|" << #a << ": " << a << "\n";
+#define outval2(a,b) cout << "Debuging...|" << #a << ": " << a <<"\t"<< #b << ": " << b << "\n";
+#define outval3(a,b,c) cout << "Debuging...|" << #a << ": " << a <<"\t"<< #b << ": " << b <<"\t"<< #c << ": " << c << "\n";
 using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-const int INF = 0x3f3f3f3f;
-using namespace std;
-const double eps = 1e-7;
-const int N = 510;
-int n;
-ll t;
-int dx[4] = {1, 0, -1, 0};
-int dy[4] = {0, 1, 0, -1};
-int dcmp(ll x) {
-    if (x == 0) return 0;
-    return x > 0 ? 1 : -1;
+int debug = 0;
+ll gcd(ll a,ll b){
+    return b?gcd(b,a%b):a;
 }
-struct Point{
-    ll x, y;
-    int id1, id2;
-    Point() {id1 = id2 = -1; }
-    Point (ll _x, ll _y) {
-        x = _x; y = _y;
-        id1 = id2 = -1;
+ll lcm(ll a,ll b){
+    return a/gcd(a,b)*b;
+}
+inline int read(){
+    int s=0,f=1;
+    char ch=getchar();
+    while(ch<'0'||ch>'9'){
+        if(ch=='-') f=-1;
+        ch=getchar();
     }
-    void input() {
-        scanf("%lld%lld", &x, &y);
+    while(ch>='0'&&ch<='9'){
+        s=s*10+ch-'0';
+        ch=getchar();
     }
-    bool operator==(const Point& b) const {
-        return (x - b.x) == 0 && (y - b.y) == 0;
+    return s*f;
+}
+const int N = 1e5+7;
+double calc(int x1,int y1,int x2,int y2){
+    double ans=x1*y1+x2*y2;
+    if(y1>y2) ans+=(y1-y2)*x2*1.0/2;
+    else ans+=(y2-y1)*x1*1.0/2;
+    return ans;
+}
+int kcase=0;
+void solve(){
+    int w1=read(),h1=read();
+    int w2=read(),h2=read();
+    double ans1=min(calc(w1,h1,w2,h2),calc(w1,h1,h2,w2));
+    double ans2=min(calc(h1,w1,w2,h2),calc(h1,w1,h2,w2));
+    printf("Case %d: %.6f\n",++kcase,min(ans1,ans2));
+}
+int main(){
+    //ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#ifdef ONLINE_JUDGE
+#else
+    freopen("in.txt", "r", stdin);
+    //debug = 1;
+#endif
+    //time_t beg, end;
+    //if(debug) beg = clock();
+
+    int T=read();
+    while(T--) solve();
+
+    /*
+    if(debug) {
+        end = clock();
+        printf("time:%.2fs\n", 1.0 * (end - beg) / CLOCKS_PER_SEC);
     }
-    bool operator<(const Point& b) const {
-        return dcmp(x - b.x) == 0 ? dcmp(y - b.y) < 0 : x < b.x;
-    }
-    Point operator-(const Point& b) const {
-        return Point(x - b.x, y - b.y);
-    }
-    Point operator+(const Point& b) const {
-        return Point(x + b.x, y + b.y);
-    }
-    ll operator*(const Point& b) const {
-        return x * b.x + y * b.y;
-    }
-    ll operator^(const Point& b) const {
-        return x * b.y - y * b.x;
-    }
-    ll dis2(Point p) {
-        return (*this - p) * (*this - p);
-    }
-};
-struct Line{
-    Point s, e;
-    int id;
-    Line() {}
-    Line(Point _s, Point _e) {
-        s = _s; e = _e;
-    }
-    int segcrossseg(Line v) {
-        int d1 = dcmp((e - s) ^ (v.s - s));
-        int d2 = dcmp((e - s) ^ (v.e - s));
-        int d3 = dcmp((v.e - v.s) ^ (s - v.s));
-        int d4 = dcmp((v.e - v.s) ^ (e - v.s));
-        if ((d1 ^ d2) == -2 && (d3 ^ d4) == -2) return 2;
-        return (d1 == 0 && dcmp((v.s - s) * (v.s - e)) <= 0) ||
-               (d2 == 0 && dcmp((v.e - s) * (v.e - e)) <= 0) ||
-               (d3 == 0 && dcmp((s - v.s) * (s - v.e)) <= 0) ||
-               (d4 == 0 && dcmp((e - v.s) * (e - v.e)) <= 0);
-    }
-    Point crossPoint(Line v) {
-        ll a1 = (v.e - v.s) ^ (s - v.s);
-        ll a2 = (v.e - v.s) ^ (e - v.s);
-        return Point((s.x * a2 - e.x * a1) / (a2 - a1), (s.y * a2 - e.y * a1) / (a2 - a1));
-    }
-}li[N];
-vector<Point> g[N];
-int main() {
-    // freopen("in.txt","r",stdin);
-    // freopen("ansout.txt","w",stdout);
-    scanf("%d%lld", &n, &t);
-//    vector<Point> all;
-    set<Point> p1, p2; //p1是所有的端点,p2是所有的交点
-    for (int i = 1; i <= n; i++) {
-        li[i].id = i;
-        li[i].s.input();
-        li[i].e.input();
-        li[i].s.id1 = i; li[i].s.id2 = i;
-        li[i].e.id1 = i; li[i].e.id2 = i;
-        g[i].push_back(li[i].s);
-        g[i].push_back(li[i].e);
-//        all.push_back(li[i].s);
-//        all.push_back(li[i].e);
-        p1.insert(li[i].s);
-        p1.insert(li[i].e);
-    }
-    Point st = li[1].s;
-    for (int i = 1; i <= n; i++) {
-        for (int j = i + 1; j <= n; j++) {
-            int ok = li[i].segcrossseg(li[j]);
-            if (ok == 2) {
-                Point tp = li[i].crossPoint(li[j]);
-                tp.id1 = li[i].id; tp.id2 = li[j].id;
-                p2.insert(tp);
-                g[li[i].id].push_back(tp);
-                g[li[j].id].push_back(tp);
-//                all.push_back(tp);
-            }
-        }
-    }
-//    for (Point now : p2) {
-//        printf("%lld %lld -%d -%d\n", now.x, now.y, now.id1, now.id2);
-//    }
-    int dir; //当前的方向
-    Point tp = li[1].e - li[1].s;
-    tp.x = dcmp(tp.x);
-    tp.y = dcmp(tp.y);
-    for (int i = 0; i < 4; i++) {
-        if (dx[i] == tp.x && dy[i] == tp.y) {
-            dir = i;
-            break;
-        }
-    }
-//    printf("%d\n", dir);
-    vector<Point> road;
-    road.push_back(st);
-    Point now = st;
-//    cout << now.id1 << " " << now.id2 << "\n";
-    int f1 = 0;
-    while (true) {
-        int cc = 1;
-        int a[2] = {0}; a[0] = now.id1;
-        if (now.id2 != now.id1) {
-            cc++; a[1] = now.id2;
-        }
-        bool f = false;
-        Point best;
-        for (int k = 0; k < cc; k++) {
-            int id = a[k];
-            for (int i = 0; i < (int)g[id].size(); i++) {
-                Point nx = g[id][i];
-                if (nx == now) continue;
-                Point lv = nx - now;
-                Point lv_dir = Point(dx[dir], dy[dir]);
-                int status = lv * lv_dir;
-                if (status > 0) {
-                    if (f) {
-                        if (now.dis2(nx) < now.dis2(best)) {
-                            best = nx;
-                        }
-                    }
-                    else {
-                        f = true;
-                        best = nx;
-                    }
-                }
-            }
-        }
-        if (p1.find(best) != p1.end())
-            dir = (dir + 2) % 4;
-        else
-            dir = (dir + 1) % 4;
-        road.push_back(best);
-        now = best;
-        if (best == st) break;
-    }
-//    for (int i = 0; i < (int)road.size(); i++) {
-//        printf("%lld %lld\n", road[i].x, road[i].y);
-//    }
-    ll len = 0;
-    for (int i = 1; i < (int)road.size(); i++) {
-        Point r1 = road[i], r2 = road[i - 1];
-        ll tmp = abs(r1.x - r2.x) + abs(r1.y - r2.y);
-        len += tmp;
-    }
-//    printf("%lld\n", len);
-    ll last = t % len;
-    if (last == 0) {
-        printf("%d %d\n", st.x, st.y);
-    }
-    else {
-        for (int i = 1; i < (int)road.size(); i++) {
-            Point r1 = road[i - 1], r2 = road[i];
-            ll tmp = abs(r1.x - r2.x) + abs(r1.y - r2.y);
-            if (last > tmp) {
-                last -= tmp;
-            }
-            else {
-                Point lv = r2 - r1;
-                int dd = 0;
-                for (int j = 0; j < 4; j++) {
-                    Point lv_dir = Point(dx[j], dy[j]);
-                    if (lv * lv_dir > 0) {
-                        dd = j;
-                        break;
-                    }
-                }
-                ll add_x = dx[dd] * last;
-                ll add_y = dy[dd] * last;
-                printf("%lld %lld\n", r1.x + add_x, r1.y + add_y);
-                break;
-            }
-        }
-    }
+    */
     return 0;
 }

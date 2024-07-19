@@ -1,0 +1,1 @@
+{"name":"Local: G","url":"e:\\acmer\\contest\\2024-swjtu-summer-contest5\\G.cpp","tests":[{"id":1721196839679,"input":"5\n1 3 2 4\n2 3 4 5\n1 1 1 3\n4 4 1 1\n4 4 3 3","output":"Case 1: 11.5\nCase 2: 27.0\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\contest\\2024-swjtu-summer-contest5\\G.cpp","group":"local","local":true}
