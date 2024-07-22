@@ -1,37 +1,36 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
+int n,m;
+int a[1005];
+int ans;
+int k[105][105];
+const int MOD=1e6+7;
+int dfs(int x,int i)//0 1
+{	
+	// cout<<x<<' '<<i<<endl;
+	if(x==m)
+		return 1;
+	if(i>n)
+		return 0;
+	if(x>m)
+		return 0;
+	if(k[x][i])
+		return k[x][i];
+	int temp=0;
+	
+	for(int j=0;j<=a[i];j++)
+		temp=(temp+dfs(x+j,i+1))%MOD;
 
-int main() {
-    int n;
-    cin >> n;
-    vector<int> a(2 * n);
-    for (int i = 0; i < 2 * n; i++) {
-        cin >> a[i];
-    }
-
-    vector<vector<int>> dp(2 * n, vector<int>(2 * n, 0));
-
-    // 动态规划的初始化和计算
-    for (int len = 1; len < 2 * n; len++) { // 子数组的长度
-        for (int i = 0; i + len < 2 * n; i++) {
-            int j = i + len;
-            // 如果子数组的首尾元素相同
-            if (a[i] == a[j]) {
-                int score = (j - i + 1) * a[i];
-                if (len > 1) {
-                    score += dp[i + 1][j - 1];
-                }
-                dp[i][j] = max(dp[i][j], score);
-            }
-            // 尝试所有可能的分割方式
-            for (int k = i; k < j; k++) {
-                dp[i][j] = max(dp[i][j], dp[i][k] + dp[k + 1][j]);
-            }
-        }
-    }
-
-    cout << dp[0][2 * n - 1] << endl;
-    return 0;
+	k[x][i]=temp;
+	return k[x][i];
+}
+int main(){
+	cin>>n>>m;
+	for(int i=1;i<=n;i++){
+		cin>>a[i];
+	}
+	// cout<<"su\n";
+	cout<<dfs(0,1)%MOD;
+	// cout<<ans%MOD;
+	return 0;
 }
