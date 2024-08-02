@@ -1,0 +1,1 @@
+{"name":"Local: B","url":"e:\\acmer\\contest\\2024-summer-niuke-5\\B.cpp","tests":[{"id":1722315500198,"input":"5\n3 3 1 1\n2 4 0 1\n1 5 1 0\n5 5 0 0\n1 2 0 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\contest\\2024-summer-niuke-5\\B.cpp","group":"local","local":true}

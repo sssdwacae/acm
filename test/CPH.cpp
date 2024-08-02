@@ -1,36 +1,43 @@
 #include<bits/stdc++.h>
 using namespace std;
-int n,m;
-int a[1005];
-int ans;
-int k[105][105];
-const int MOD=1e6+7;
-int dfs(int x,int i)//0 1
-{	
-	// cout<<x<<' '<<i<<endl;
-	if(x==m)
-		return 1;
-	if(i>n)
-		return 0;
-	if(x>m)
-		return 0;
-	if(k[x][i])
-		return k[x][i];
-	int temp=0;
-	
-	for(int j=0;j<=a[i];j++)
-		temp=(temp+dfs(x+j,i+1))%MOD;
-
-	k[x][i]=temp;
-	return k[x][i];
-}
+#define IOS ios::sync_with_stdio(0),cin.tie(0),cout.tie(0)
+struct node{
+	int s,t;		
+};
+node a[100005];
+int t,m;
+int cnt=0;
+int n;
+map<int,int>mp;
+queue<node>q;
 int main(){
-	cin>>n>>m;
-	for(int i=1;i<=n;i++){
-		cin>>a[i];
+	IOS;
+	cin>>n;
+	while(n--){
+		cin>>t>>m;
+		for(int i=1;i<=m;i++){
+			cin>>a[i].s;
+			a[i].t=t;
+			q.push(a[i]);
+		}
+		while(!q.empty()){
+			if(mp[q.front().s]==0){
+				cnt++;
+				mp[q.front().s]++;
+			}
+			if(t>86400||q.back().t-q.front().t>86400){
+				while(q.back().t-q.front().t>86400){
+					mp[q.front().s]--;
+					if(mp[q.front().s]==0){
+						cnt--;
+					}
+					q.pop();
+				}
+				continue;
+			}
+			q.pop();
+		}
+		cout<<cnt<<'\n';
 	}
-	// cout<<"su\n";
-	cout<<dfs(0,1)%MOD;
-	// cout<<ans%MOD;
 	return 0;
 }
