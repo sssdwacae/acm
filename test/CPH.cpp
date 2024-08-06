@@ -1,43 +1,51 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <unordered_map>
 using namespace std;
-#define IOS ios::sync_with_stdio(0),cin.tie(0),cout.tie(0)
-struct node{
-	int s,t;		
-};
-node a[100005];
-int t,m;
-int cnt=0;
-int n;
-map<int,int>mp;
-queue<node>q;
-int main(){
-	IOS;
-	cin>>n;
-	while(n--){
-		cin>>t>>m;
-		for(int i=1;i<=m;i++){
-			cin>>a[i].s;
-			a[i].t=t;
-			q.push(a[i]);
-		}
-		while(!q.empty()){
-			if(mp[q.front().s]==0){
-				cnt++;
-				mp[q.front().s]++;
-			}
-			if(t>86400||q.back().t-q.front().t>86400){
-				while(q.back().t-q.front().t>86400){
-					mp[q.front().s]--;
-					if(mp[q.front().s]==0){
-						cnt--;
-					}
-					q.pop();
-				}
-				continue;
-			}
-			q.pop();
-		}
-		cout<<cnt<<'\n';
-	}
-	return 0;
+
+int countGoodIntervals(const vector<int>& a, int n, int k) {
+    unordered_map<int, int> countMap;
+    int left = 0, right = 0;
+    int goodCount = 0;
+    int numElementsMeetingK = 0;
+    
+    while (right < n) {
+        countMap[a[right]]++;
+        if (countMap[a[right]] == k) {
+            numElementsMeetingK++;
+        }
+        if (countMap[a[right]] == k + 1) {
+            numElementsMeetingK--;
+        }
+        
+        while (numElementsMeetingK == countMap.size()) {
+            goodCount += n - right;
+            countMap[a[left]]--;
+            if (countMap[a[left]] == k - 1) {
+                numElementsMeetingK--;
+            }
+            if (countMap[a[left]] == k) {
+                numElementsMeetingK++;
+            }
+            left++;
+        }
+        right++;
+    }
+    
+    return goodCount;
+}
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int n, k;
+        cin >> n >> k;
+        vector<int> a(n);
+        for (int i = 0; i < n; ++i) {
+            cin >> a[i];
+        }
+        cout << countGoodIntervals(a, n, k) << endl;
+    }
+    return 0;
 }
