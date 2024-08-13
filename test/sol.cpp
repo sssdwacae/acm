@@ -1,62 +1,41 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
-#define endl '\n'
-
-const int N=1e5+5;
-#define int long long
-#define mp make_pair
-
-int m,k,h;
-
-int check(int t)
+int c[1005];
+int main()
 {
-    return (t-1)/(m-k)*k+t;
-    int nn=t;//4
-    int ans=0;
-    while(nn>=m){
-        int temp=nn/m;
-        ans+=temp*m;
-        nn-=temp*m;
-        nn+=temp*k;
-    }
-    return ans+nn;
-}
-
-void solve()
-{
-    
-    cin>>m>>k>>h;
-    if(h<=m){
-        cout<<h<<endl;
-        return;
-    }
-    else if(m<=k){
-        cout<<m<<endl;
-        return;
-    }
-    // cout<<check(4)<<endl;
-    int l=m,r=h;
-    while(l<r){
-        int mid=(l+r)/2;
-        if(check(mid)>=h)
-            r=mid;
-        else
-            l=mid+1;
-    }
-    cout<<l<<endl;
-    return;
-}
-
-signed main()
-{
-    freopen("in.txt","r",stdin);
-    freopen("solout.txt","w",stdout);
-    ios::sync_with_stdio(0);
-    cin.tie(0);cout.tie(0);
-    int T;
-    cin>>T;
-    while(T--)
-        solve();     
-    return 0;
+	int n;
+	cin >> n;
+	c[1004] = 1;
+	int temp=0;
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1004; j >= 0; j--)
+		{
+			int k=c[j]*2+temp;
+			c[j]=k%10;
+			temp=k/10;
+		}
+	}
+	c[1004]--;
+	temp =0;
+	for (int j = 1004; j >= 0; j--)
+		{
+			int k=c[j]*2+temp;
+			c[j]=k%10;
+			temp=k/10;
+		}
+	bool flag = 1;
+	for (int i = 0; i < 1005; i++)
+	{
+		if (c[i] == 0 && flag)
+		{
+			continue;
+		}
+		else
+		{
+			flag = 0;
+			cout << c[i];
+		}
+	}
+	return 0;
 }

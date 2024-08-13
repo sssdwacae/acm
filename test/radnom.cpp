@@ -1,6 +1,8 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
+#include<vector>
+#include<algorithm>
 using namespace std;
 #define mx 2e6
 #define mn 1e6
@@ -18,10 +20,18 @@ int main()
     int T=1;
     cout<<T<<endl;
     for(int i=1;i<=T;i++){
-        int m=random(1e2);
-        int k=random(1e2);
-        int h=random(1e3);
-        cout<<m<<' '<<k<<' '<<h<<endl;
+        int n=random(1e1)+2;
+        cout<<n<<endl;
+        vector<int> tt;
+        for(int i=1;i<=n;i++){
+            int temp=random(1e5)+1;
+            tt.push_back(temp);
+            //cout<<temp<<" ";
+        }
+        sort(tt.begin(),tt.end());
+        for(int i=0;i<tt.size();i++)
+            cout<<tt[i]<<' ';
+        cout<<endl;
     }
     return 0;
 }
