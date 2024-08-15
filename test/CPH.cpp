@@ -1,35 +1,53 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+
 using namespace std;
-int b[1005];
-int n;
-void v(int *a,int l,int r,int mid){
-	mid=(l+r)/2;
-	for(int i=l;i<=mid;i++){
-		b[i]=a[i];
-	}
-	if(mid!==l){
-		v(b,l,mid,0);
-	}
-	else{
-		for(int i=1;i<=n;i++){
-			if(i%(mid-l+1)==0){
-				if(b[i+1]<b[i]){
-					swap(b[i],b[i+1]);
-				}
-			}
-		}
-		return;
-	}
+
+struct Contest {
+    double gain;
+    int p;
+};
+
+// 计算单个比赛的增益
+double calculate_gain(double k, double r, int p) {
+    return k * p + (1.0 - k) * r - r;
 }
-int main(){
-	cin>>n;
-	int a[n+5];
-	for(int i=1;i<=n;i++){
-		cin>>a[i];
-	}
-	v(a,1,n,0);
-	for(int i=1;i<=n;i++){
-		cout<<a[i]<<' ';
-	}
-	return 0;
+
+int main() {
+    int T;
+    cin >> T;
+    
+    while (T--) {
+        int n, m;
+        double k;
+        cin >> n >> m >> k;
+        
+        int r0;
+        cin >> r0;
+        
+        vector<int> p(n);
+        vector<Contest> contests(n);
+        
+        for (int i = 0; i < n; ++i) {
+            cin >> p[i];
+            contests[i] = {calculate_gain(k, r0, p[i]), p[i]};
+        }
+        
+        // 对比赛按照增益从小到大排序
+        sort(contests.begin(), contests.end(), [](const Contest& a, const Contest& b) {
+            return a.gain < b.gain;
+        });
+        
+        double r = r0;
+        // 前 m 个比赛不评分
+        for (int i = m; i < n; ++i) {
+            r = k * contests[i].p + (1.0 - k) * r;
+        }
+        
+        cout << fixed << setprecision(20) << r << endl;
+    }
+    
+    return 0;
 }
