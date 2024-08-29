@@ -1,0 +1,1 @@
+{"name":"Local: D","url":"e:\\acmer\\contest\\2024-changchun-ccpc\\D.cpp","tests":[{"id":1724575673552,"input":"5 2\n1 3\n4 7\n5 9\n2 5\n7 11\n","output":"2 2 3\n2 1 4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\contest\\2024-changchun-ccpc\\D.cpp","group":"local","local":true}

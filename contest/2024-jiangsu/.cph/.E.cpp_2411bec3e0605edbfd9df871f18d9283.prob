@@ -1,0 +1,1 @@
+{"name":"Local: E","url":"e:\\acmer\\contest\\2024-jiangsu\\E.cpp","tests":[{"id":1724737362522,"input":"5 2\n1 1024 2048 3 5\n","output":"512.500000 KiBps\n1.500000 MiBps\n1.001465 MiBps\n4.000000 KiBps"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\contest\\2024-jiangsu\\E.cpp","group":"local","local":true}

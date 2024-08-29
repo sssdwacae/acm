@@ -17,21 +17,21 @@ int main()
     
     freopen("in.txt","w",stdout);
     srand((unsigned)time(0));
-    int T=1;
+    int T=random(20)+2;
     cout<<T<<endl;
     for(int i=1;i<=T;i++){
-        int n=random(1e1)+2;
-        cout<<n<<endl;
-        vector<int> tt;
-        for(int i=1;i<=n;i++){
-            int temp=random(1e5)+1;
-            tt.push_back(temp);
-            //cout<<temp<<" ";
-        }
-        sort(tt.begin(),tt.end());
-        for(int i=0;i<tt.size();i++)
-            cout<<tt[i]<<' ';
-        cout<<endl;
+        int n=random(1e3)+1;
+        printf("%d ",n);
+    }
+    cout<<endl;
+    for(int i=1;i<=T;i++){
+        int n=random(1e3)+1;
+        if(i==1)
+            cout<<0<<' ';
+        else if(i==2)
+            cout<<1<<' ';
+        else
+            printf("%d ",n%2);
     }
     return 0;
 }

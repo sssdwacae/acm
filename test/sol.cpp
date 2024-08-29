@@ -1,82 +1,57 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
+#define int long long
 #define endl '\n'
+#define valid(x, y) 0 <= x &&x < n && 0 <= y &&y < m
 
-const int N=1e5+5;
-#define ll long long
-#define mp make_pair
+#ifdef DEBUG
+#define debug(x) cerr << #x << ": " << x << endl;
+#else
+#define debug(x)
+#endif
 
-struct Point
-{
-    int x,y;
-    Point(){}
-    Point(int _x,int _y){
-        x=_x;
-        y=_y;
+using pii = pair<int, int>;
+
+int n, m, t;
+
+void solve() {
+  cin >> n;
+  vector<int> a(n), c(n);
+  for (int &it : a)
+    cin >> it;
+  int c1 = 0, c0 = 0, mn = LONG_LONG_MAX;
+  vector<int> a1, a0;
+  a1.reserve(n), a0.reserve(n);
+  for (int i = 0; i < n; ++i) {
+    cin >> c[i];
+    if (c[i]) {
+      ++c1, a1.push_back(a[i]);
+    } else {
+      ++c0, a0.push_back(a[i]);
     }
-};
-
-int gcd(int a, int b)
-{ 
-    return b == 0 ? a : gcd(b, a % b); 
+    if (c1 == c0) {
+      sort(a1.begin(), a1.end());
+      sort(a0.begin(), a0.end(), greater<int>());
+      for (int i = 0; i < (int)a1.size(); ++i)
+        mn = min(mn, a1[i] + a0[i]);
+      c1 = c0 = 0;
+      a1.clear(), a0.clear();
+    }
+  }
+  sort(a1.begin(), a1.end());
+  sort(a0.begin(), a0.end(), greater<int>());
+  int l = a1.size() - 1, r = 0;
+  while (l >= 0 && r < (int)a0.size())
+    mn = min(mn, a1[l--] + a0[r++]);
+  cout << mn << endl;
 }
 
-void solve()
-{
-    int n;
-    cin>>n;
-    vector<int> temp(n+1,0);
-    vector<vector<int> > check(n+1,temp);
-    vector<Point> p;
-    for(int i=1,x,y;i<=n*n;i++){
-        cin>>x>>y;
-        if(check[x][y]==0){
-            check[x][y]=1;
-            for(int i=0;i<p.size();i++){
-                int sx=x,sy=y,ex=p[i].x,ey=p[i].y;
-                if(sx>ex){
-                    swap(sx,ex);
-                    swap(sy,ey);
-                }
-                int dx=ex-sx,dy=ey-sy;
-                int g=gcd((int)fabs(dx),(int)fabs(dy));
-                dx/=g;dy/=g;
-
-                int nx=x,ny=y;
-                while(nx>=1&&nx<=n&&ny>=1&&ny<=n){
-                    nx+=dx;ny+=dy;
-                    if(nx>=1&&nx<=n&&ny>=1&&ny<=n)
-                        check[nx][ny]=1;
-                }
-                nx=x,ny=y;
-                while(nx>=1&&nx<=n&&ny>=1&&ny<=n){
-                    nx-=dx;ny-=dy;
-                    if(nx>=1&&nx<=n&&ny>=1&&ny<=n)
-                        check[nx][ny]=1;
-                }
-
-
-            }
-            p.push_back(Point(x,y));
-            cout<<1;
-        }
-        else
-            cout<<0;
-    }
-    return;
-}
-
-signed main()
-{
+signed main() {
     freopen("in.txt","r",stdin);
-    freopen("ansout.txt","w",stdout);
-    ios::sync_with_stdio(0);
-    cin.tie(0);cout.tie(0);
-    int T;
-    // cin>>T;
-    T=1;
-    while(T--)
-        solve();     
-    return 0;
-}
+freopen("solout.txt","w",stdout);
+  ios_base::sync_with_stdio(0);
+  cin.tie(0), cout.tie(0), cerr.tie(0);
+
+  solve();
+}    

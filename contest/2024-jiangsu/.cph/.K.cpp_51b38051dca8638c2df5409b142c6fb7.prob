@@ -1,0 +1,1 @@
+{"name":"Local: K","url":"e:\\acmer\\contest\\2024-jiangsu\\K.cpp","tests":[{"id":1724738155804,"input":"2\n3 3\n","output":"Bob\n"},{"id":1724738160804,"input":"2\n2 3\n","output":"Alice\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\acmer\\contest\\2024-jiangsu\\K.cpp","group":"local","local":true}
