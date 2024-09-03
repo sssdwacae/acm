@@ -19,11 +19,11 @@ bool check(int num)
     // memset(c,0,sizeof(c));
     for(int i=1;i<=n;i++)
         for(int j=1;j<=n;j++){
-            if(a[i][j]>=num)
+            if(a[i][j]>num)
                 b[i][j]=1;
             else
                 b[i][j]=0;
-            if(a[i][j]<=num)
+            if(a[i][j]==num)
                 d[i][j]=1;
             else
                 d[i][j]=0;
@@ -38,13 +38,15 @@ bool check(int num)
         cout<<endl<<endl;
         for(int i=1;i<=n;i++){
             for(int j=1;j<=n;j++)
-                cout<<b[i][j]<<' ';cout<<endl;
+                cout<<d[i][j]<<' ';cout<<endl;
         }
     }
     for(int i=1;i<=n-m+1;i++)
         for(int j=1;j<=n-m+1;j++){
-            if(c[i+m-1][j+m-1]-c[i-1][j+m-1]-c[i+m-1][j-1]+c[i-1][j-1]>=(m*m+1)/2
-                &&e[i+m-1][j+m-1]-e[i-1][j+m-1]-e[i+m-1][j-1]+e[i-1][j-1]>=(m*m+1)/2
+            if(c[i+m-1][j+m-1]-c[i-1][j+m-1]-c[i+m-1][j-1]+c[i-1][j-1]==(m*m+1)/2
+                ||(c[i+m-1][j+m-1]-c[i-1][j+m-1]-c[i+m-1][j-1]+c[i-1][j-1]<(m*m+1)/2&&
+                e[i+m-1][j+m-1]-e[i-1][j+m-1]-e[i+m-1][j-1]+e[i-1][j-1]+
+                c[i+m-1][j+m-1]-c[i-1][j+m-1]-c[i+m-1][j-1]+c[i-1][j-1]>=(m*m+1)/2)
             )
                 return true;
         }
@@ -62,15 +64,17 @@ void solve()
         }
     int left=0,mid;
     while(left<right){
-        // cout<<mid<<"????"<<check(mid)<<endl;
-        // cout<<left<<' '<<right<<endl;
+        cout<<mid<<"????"<<check(mid)<<endl;
+        cout<<left<<' '<<right<<endl;
         mid=(left+right+1)/2;
         if(check(mid))
             left=mid;
         else
             right=mid-1;
     }
-    cout<<check(6)<<endl;
+    while(check(left))
+        left--;
+    // cout<<check(6)<<endl;
     cout<<left<<endl;
     return;
 }
