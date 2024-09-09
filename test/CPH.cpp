@@ -6,10 +6,6 @@ using namespace std;
 const int N=1e5+5;
 #define int long long
 #define mp make_pair
-#define L a[i].l
-#define R a[i].r
-#define POS a[i].pos
-#define B a[i].b
 
 struct node{
 	int l,r,pos,b;
@@ -41,14 +37,14 @@ void solve()
 	cin>>n;
 	vector<node> a(n+1);
 	for(int i=1;i<=n;i++){
-		cin>>L>>R;
-		POS=i;
+		cin>>a[i].l>>a[i].r;
+		a[i].pos=i;
 	}
 	sort(a.begin()+1,a.end(),cmp1);
 	int enda=n;//当前不能跨过的最近区间
-	int 
+	int endr=n;//当前插入的最后坐标
 	for(int i=n;i>=1;i--){
-
+		int R=i;
 	}
 	return;
 }
